@@ -3,19 +3,42 @@ import { useRef, useState } from "react";
 import ToDoItem from "../components/TodoItem/TodoItem";
 
 const ToDoApp = () => {
-  const [todoList, setTodoList] = useState(["1", "2", "3"]);
+  const [todoList, setTodoList] = useState([
+    {
+      text: "Приготовить ужин",
+      finished: false,
+    },
+    {
+      text: "Почистить обувь",
+      finished: false,
+    },
+    {
+      text: "Написать программу",
+      finished: false,
+    },
+  ]);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const addItem = () => {
     const value = inputRef.current?.value;
     if (value !== undefined && value !== "") {
-      setTodoList(prevList => [...prevList, value]);
+      setTodoList(prevList => [...prevList, { text: value, finished: false }]);
       if (inputRef.current !== null) inputRef.current.value = "";
     }
   };
 
   const removeItem = (id: number) => {
     setTodoList(prevList => [...prevList.slice(0, id), ...prevList.slice(id + 1)]);
+  };
+
+  const toggleItem = (id: number) => {
+    setTodoList(prevList => {
+      let tempList = [...prevList];
+      let tempItem = { ...tempList[id] };
+      tempItem.finished = !tempItem.finished;
+      tempList[id] = tempItem;
+      return tempList;
+    });
   };
 
   return (
@@ -25,12 +48,14 @@ const ToDoApp = () => {
         ref={inputRef}
       />
       <button onClick={addItem}>+</button>
-      {todoList.map((el, i) => (
+      {todoList.map((el, id) => (
         <ToDoItem
-          text={el}
-          id={i}
+          text={el.text}
+          id={id}
+          finished={el.finished}
           removeItem={removeItem}
-          key={i}
+          toggleItem={toggleItem}
+          key={id}
         />
       ))}
     </div>
