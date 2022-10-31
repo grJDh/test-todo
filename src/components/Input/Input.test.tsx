@@ -26,6 +26,8 @@ describe("Input", () => {
     expect(
       screen.getAllByRole("listitem").find(listitem => listitem.textContent === "Проверить тесты")
     ).toBeInTheDocument();
+
+    expect(inputElement).toHaveValue("");
   });
 
   test("Adding new item with Enter key", () => {
@@ -39,6 +41,8 @@ describe("Input", () => {
     expect(
       screen.getAllByRole("listitem").find(listitem => listitem.textContent === "Проверить тесты")
     ).toBeInTheDocument();
+
+    expect(inputElement).toHaveValue("");
   });
 
   test("If input is empty, no item is added", () => {
