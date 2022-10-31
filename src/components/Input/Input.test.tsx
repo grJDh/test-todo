@@ -9,7 +9,6 @@ describe("Input", () => {
 
     const inputElement = screen.getByRole("textbox");
     userEvent.clear(inputElement);
-    userEvent.tab();
     expect(inputElement).toHaveValue("");
 
     return inputElement;
@@ -19,7 +18,6 @@ describe("Input", () => {
     const inputElement = startToDoApp();
 
     userEvent.type(inputElement, "Проверить тесты");
-    userEvent.tab();
     expect(inputElement).toHaveValue("Проверить тесты");
 
     const addButton = screen.getByRole("button", { name: "+" });
@@ -30,11 +28,23 @@ describe("Input", () => {
     ).toBeInTheDocument();
   });
 
+  test("Adding new item with Enter key", () => {
+    const inputElement = startToDoApp();
+
+    userEvent.type(inputElement, "Проверить тесты");
+    expect(inputElement).toHaveValue("Проверить тесты");
+
+    userEvent.keyboard("[Enter]");
+
+    expect(
+      screen.getAllByRole("listitem").find(listitem => listitem.textContent === "Проверить тесты")
+    ).toBeInTheDocument();
+  });
+
   test("If input is empty, no item is added", () => {
     startToDoApp();
 
     const todoList = screen.getAllByRole("listitem");
-
     expect(todoList).toHaveLength(3);
 
     const addButton = screen.getByRole("button", { name: "+" });

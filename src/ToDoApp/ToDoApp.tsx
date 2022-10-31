@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 
 import Input from "../components/Input/Input";
 import ToDoItem from "../components/TodoItem/TodoItem";
+import Footer from "../components/Footer/Footer";
 
 const ToDoApp = () => {
   const [todoList, setTodoList] = useState([
@@ -43,23 +44,26 @@ const ToDoApp = () => {
   };
 
   return (
-    <div className="flex w-1/3 h-1/2 bg-white flex-col shadow-xl">
-      <Input
-        refProp={inputRef}
-        onClick={addItem}
-      />
-      <ul>
-        {todoList.map((el, id) => (
-          <ToDoItem
-            text={el.text}
-            id={id}
-            finished={el.finished}
-            removeItem={removeItem}
-            toggleItem={toggleItem}
-            key={id}
-          />
-        ))}
-      </ul>
+    <div className="flex w-5/6 max-w-screen-sm min-w-[340px] h-1/2 bg-white flex-col shadow-xl justify-between">
+      <div>
+        <Input
+          refProp={inputRef}
+          addItem={addItem}
+        />
+        <ul>
+          {todoList.map((el, id) => (
+            <ToDoItem
+              text={el.text}
+              id={id}
+              finished={el.finished}
+              removeItem={removeItem}
+              toggleItem={toggleItem}
+              key={id}
+            />
+          ))}
+        </ul>
+      </div>
+      <Footer />
     </div>
   );
 };
