@@ -10,7 +10,7 @@ const ToDoApp = () => {
     },
     {
       text: "Почистить обувь",
-      finished: false,
+      finished: true,
     },
     {
       text: "Написать программу",
@@ -48,16 +48,18 @@ const ToDoApp = () => {
         ref={inputRef}
       />
       <button onClick={addItem}>+</button>
-      {todoList.map((el, id) => (
-        <ToDoItem
-          text={el.text}
-          id={id}
-          finished={el.finished}
-          removeItem={removeItem}
-          toggleItem={toggleItem}
-          key={id}
-        />
-      ))}
+      <ul>
+        {todoList.map((el, id) => (
+          <ToDoItem
+            text={el.text}
+            id={id}
+            finished={el.finished}
+            removeItem={removeItem}
+            toggleItem={toggleItem}
+            key={id}
+          />
+        ))}
+      </ul>
     </div>
   );
 };

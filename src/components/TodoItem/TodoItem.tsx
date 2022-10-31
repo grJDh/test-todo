@@ -8,12 +8,12 @@ type Props = {
 
 const ToDoItem = ({ text, id, finished, removeItem, toggleItem }: Props) => {
   return (
-    <div
+    <li
       className={`cursor-pointer border-solid border-black border ${finished ? "line-through" : ""}`}
       onClick={() => toggleItem(id)}
     >
       {text}
-    </div>
+    </li>
   );
 };
 
