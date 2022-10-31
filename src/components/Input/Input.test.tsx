@@ -4,17 +4,23 @@ import userEvent from "@testing-library/user-event";
 import ToDoApp from "../../ToDoApp/ToDoApp";
 
 describe("Input", () => {
-  test("Adding new item", () => {
+  const startToDoApp = () => {
     render(<ToDoApp />);
 
-    const input = screen.getByRole("textbox");
-    userEvent.clear(input);
+    const inputElement = screen.getByRole("textbox");
+    userEvent.clear(inputElement);
     userEvent.tab();
-    expect(input).toHaveValue("");
+    expect(inputElement).toHaveValue("");
 
-    userEvent.type(input, "Проверить тесты");
+    return inputElement;
+  };
+
+  test("Adding new item", () => {
+    const inputElement = startToDoApp();
+
+    userEvent.type(inputElement, "Проверить тесты");
     userEvent.tab();
-    expect(input).toHaveValue("Проверить тесты");
+    expect(inputElement).toHaveValue("Проверить тесты");
 
     const addButton = screen.getByRole("button", { name: "+" });
     userEvent.click(addButton);
@@ -22,5 +28,18 @@ describe("Input", () => {
     expect(
       screen.getAllByRole("listitem").find(listitem => listitem.textContent === "Проверить тесты")
     ).toBeInTheDocument();
+  });
+
+  test("If input is empty, no item is added", () => {
+    startToDoApp();
+
+    const todoList = screen.getAllByRole("listitem");
+
+    expect(todoList).toHaveLength(3);
+
+    const addButton = screen.getByRole("button", { name: "+" });
+    userEvent.click(addButton);
+
+    expect(todoList).toHaveLength(3);
   });
 });

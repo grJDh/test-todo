@@ -6,12 +6,12 @@ import userEvent from "@testing-library/user-event";
 import ToDoApp from "../../ToDoApp/ToDoApp";
 
 describe("ToDo Item", () => {
-  const renderToDoApp = () => {
+  const startToDoApp = () => {
     render(<ToDoApp />);
   };
 
   test("Clicking on item 'completes' it and vice-versa", () => {
-    renderToDoApp();
+    startToDoApp();
 
     const todoList = screen.getAllByRole("listitem");
     expect(todoList).toHaveLength(3);
