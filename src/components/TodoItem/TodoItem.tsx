@@ -9,10 +9,11 @@ type Props = {
 const ToDoItem = ({ text, id, finished, removeItem, toggleItem }: Props) => {
   return (
     <li
-      className={`cursor-pointer border-solid border-black border ${finished ? "line-through" : ""}`}
+      className={`cursor-pointer border-solid border-black border flex justify-between`}
       onClick={() => toggleItem(id)}
     >
-      {text}
+      <p className={`${finished ? "line-through" : ""}`}>{text}</p>
+      <button onClick={() => removeItem(id)}>D</button>
     </li>
   );
 };
