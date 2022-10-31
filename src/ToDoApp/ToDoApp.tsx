@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 
+import Input from "../components/Input/Input";
 import ToDoItem from "../components/TodoItem/TodoItem";
 
 const ToDoApp = () => {
@@ -43,11 +44,10 @@ const ToDoApp = () => {
 
   return (
     <div className="flex w-1/3 h-1/2 bg-white flex-col shadow-xl">
-      <input
-        type="text"
-        ref={inputRef}
+      <Input
+        refProp={inputRef}
+        onClick={addItem}
       />
-      <button onClick={addItem}>+</button>
       <ul>
         {todoList.map((el, id) => (
           <ToDoItem
