@@ -7,40 +7,48 @@ import Footer from "../components/Footer/Footer";
 const ToDoApp = () => {
   const [todoList, setTodoList] = useState([
     {
+      id: 1667248861470,
       text: "Приготовить ужин",
       finished: false,
     },
     {
+      id: 1667248805525,
       text: "Почистить обувь",
       finished: true,
     },
     {
+      id: 1667248804108,
       text: "Написать программу",
       finished: false,
     },
   ]);
-  const [numberOfLeftToDo, setNumberOfLeftToDo] = useState(1);
+  const [numberOfLeftToDo, setNumberOfLeftToDo] = useState(0);
+  const [category, setCatefory] = useState("All");
+  const [filteredTodoList, setFilteredTodoList] = useState([...todoList]);
 
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const addItem = () => {
     const value = inputRef.current?.value;
     if (value !== undefined && value !== "") {
-      setTodoList(prevList => [...prevList, { text: value, finished: false }]);
+      setTodoList(prevList => [...prevList, { id: new Date().getTime(), text: value, finished: false }]);
       if (inputRef.current !== null) inputRef.current.value = "";
     }
   };
 
   const removeItem = (id: number) => {
-    setTodoList(prevList => [...prevList.slice(0, id), ...prevList.slice(id + 1)]);
+    const filteredList = todoList.filter(item => item.id !== id);
+    setTodoList(filteredList);
   };
 
   const toggleItem = (id: number) => {
     setTodoList(prevList => {
+      const indexOfItem = prevList.findIndex(item => item.id === id);
+
       let tempList = [...prevList];
-      let tempItem = { ...tempList[id] };
+      let tempItem = { ...tempList[indexOfItem] };
       tempItem.finished = !tempItem.finished;
-      tempList[id] = tempItem;
+      tempList[indexOfItem] = tempItem;
 
       return tempList;
     });
@@ -51,6 +59,8 @@ const ToDoApp = () => {
     setTodoList(newList);
   };
 
+  const onCategoryChange = (event: React.ChangeEvent<HTMLInputElement>) => setCatefory(event.target.value);
+
   useEffect(() => {
     const countedNumberOfLeft = todoList.reduce((sum, item) => {
       if (!item.finished) return sum + 1;
@@ -58,6 +68,24 @@ const ToDoApp = () => {
     }, 0);
     setNumberOfLeftToDo(countedNumberOfLeft);
   }, [todoList]);
+
+  useEffect(() => {
+    let filteredList = [];
+
+    switch (category) {
+      case "Active":
+        filteredList = todoList.filter(item => !item.finished);
+        break;
+      case "Completed":
+        filteredList = todoList.filter(item => item.finished);
+        break;
+      default:
+        filteredList = [...todoList];
+        break;
+    }
+
+    setFilteredTodoList(filteredList);
+  }, [todoList, category]);
 
   return (
     <div className="flex w-5/6 max-w-screen-sm min-w-[340px] h-1/2 bg-white flex-col shadow-xl justify-between">
@@ -67,14 +95,14 @@ const ToDoApp = () => {
           addItem={addItem}
         />
         <ul>
-          {todoList.map((el, id) => (
+          {filteredTodoList.map(item => (
             <ToDoItem
-              text={el.text}
-              id={id}
-              finished={el.finished}
+              text={item.text}
+              id={item.id}
+              finished={item.finished}
               removeItem={removeItem}
               toggleItem={toggleItem}
-              key={id}
+              key={item.id}
             />
           ))}
         </ul>
@@ -82,6 +110,8 @@ const ToDoApp = () => {
       <Footer
         numberOfLeftToDo={numberOfLeftToDo}
         clearCompleted={clearCompleted}
+        onCategoryChange={onCategoryChange}
+        category={category}
       />
     </div>
   );
