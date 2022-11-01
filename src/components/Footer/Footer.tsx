@@ -35,7 +35,7 @@ const Footer = ({ numberOfLeftToDo, clearCompleted, onCategoryChange, category }
         />
       </div>
       <button
-        className="hover:underline w-1/4 text-end"
+        className="hover:underline hover:text-gray-800 w-1/4 text-end"
         onClick={clearCompleted}
       >
         Clear completed
