@@ -13,8 +13,8 @@ const Footer = ({ numberOfLeftToDo, clearCompleted, onCategoryChange, category }
       className="flex h-12 border-t border-gray-400 justify-between items-center
                  px-4 box-border absolute bottom-0 w-full bg-white text-gray-500 rounded-b-lg"
     >
-      <p>{numberOfLeftToDo} items left</p>
-      <div className="flex justify-between items-center box-border">
+      <p className="w-1/4">{numberOfLeftToDo} items left</p>
+      <div className="flex justify-between items-center box-border w-2/5">
         <RadioButton
           name={"category"}
           value={"All"}
@@ -35,7 +35,7 @@ const Footer = ({ numberOfLeftToDo, clearCompleted, onCategoryChange, category }
         />
       </div>
       <button
-        className="hover:underline"
+        className="hover:underline w-1/4 text-end"
         onClick={clearCompleted}
       >
         Clear completed

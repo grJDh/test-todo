@@ -8,7 +8,7 @@ type Props = {
 const RadioButton = ({ name, value, onChange, category }: Props) => {
   return (
     <label
-      className={`cursor-pointer mx-2 hover:underline border-pink-200 px-2 box-border flex justify-center items-center
+      className={`cursor-pointer mx-2 hover:underline border-red-200 px-2 box-border flex justify-center items-center
                   ${category === value ? "border rounded-[3px]" : ""}`}
       data-testid="radioLabel"
     >
