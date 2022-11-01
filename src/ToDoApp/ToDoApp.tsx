@@ -88,13 +88,16 @@ const ToDoApp = () => {
   }, [todoList, category]);
 
   return (
-    <div className="flex w-5/6 max-w-screen-sm min-w-[340px] h-1/2 bg-white flex-col shadow-xl justify-between">
-      <div>
+    <div
+      className="flex w-5/6 max-w-screen-sm min-w-[340px] h-1/2 bg-white flex-col shadow-xl justify-between rounded-xl
+                relative"
+    >
+      <div className="overflow-hidden">
         <Input
           refProp={inputRef}
           addItem={addItem}
         />
-        <ul>
+        <ul className=" h-full">
           {filteredTodoList.map(item => (
             <ToDoItem
               text={item.text}

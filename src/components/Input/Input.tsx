@@ -16,14 +16,15 @@ const Input = ({ refProp, addItem }: Props) => {
   });
 
   return (
-    <div className="flex border-solid border-black border h-8">
+    <div className="flex border-b-2 border-gray-300 h-12">
       <input
-        className="w-full"
+        className="w-full text-xl rounded-tl-xl px-10 placeholder:italic placeholder:text-gray-300"
         type="text"
         ref={refProp}
+        placeholder={"What needs to be done?"}
       />
       <button
-        className="w-10"
+        className="w-36 bg-gray-300 rounded-tr-xl hover:bg-gray-400 active:bg-gray-500 text-5xl flex items-center justify-center"
         onClick={addItem}
       >
         +

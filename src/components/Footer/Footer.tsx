@@ -9,9 +9,12 @@ type Props = {
 
 const Footer = ({ numberOfLeftToDo, clearCompleted, onCategoryChange, category }: Props) => {
   return (
-    <div className="flex border-solid border-black border h-8 justify-between items-center">
+    <div
+      className="flex h-12 border-t border-gray-400 justify-between items-center
+                 px-4 box-border absolute bottom-0 w-full bg-white text-gray-500 rounded-b-lg"
+    >
       <p>{numberOfLeftToDo} items left</p>
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center box-border">
         <RadioButton
           name={"category"}
           value={"All"}
@@ -31,7 +34,12 @@ const Footer = ({ numberOfLeftToDo, clearCompleted, onCategoryChange, category }
           category={category}
         />
       </div>
-      <button onClick={clearCompleted}>Clear completed</button>
+      <button
+        className="hover:underline"
+        onClick={clearCompleted}
+      >
+        Clear completed
+      </button>
     </div>
   );
 };
