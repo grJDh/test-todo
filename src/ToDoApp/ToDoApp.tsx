@@ -92,7 +92,7 @@ const ToDoApp = () => {
       className="flex w-5/6 max-w-screen-sm min-w-[340px] h-1/2 bg-white flex-col shadow-xl justify-between rounded-xl
                 relative"
     >
-      <div className="overflow-hidden shadow-md">
+      <div className="overflow-hidden shadow-">
         <Input
           refProp={inputRef}
           addItem={addItem}
