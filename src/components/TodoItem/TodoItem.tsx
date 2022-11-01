@@ -13,7 +13,7 @@ const ToDoItem = ({ text, id, finished, removeItem, toggleItem }: Props) => {
       onClick={() => toggleItem(id)}
     >
       <p className={`${finished ? "line-through" : ""}`}>{text}</p>
-      <button onClick={() => removeItem(id)}>D</button>
+      <button onClick={() => removeItem(id)}>❌</button>
     </li>
   );
 };
