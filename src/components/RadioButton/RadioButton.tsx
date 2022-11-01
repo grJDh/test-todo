@@ -7,7 +7,10 @@ type Props = {
 
 const RadioButton = ({ name, value, onChange, category }: Props) => {
   return (
-    <label className={`cursor-pointer mx-2 border-black ${category === value ? "border" : ""}`}>
+    <label
+      className={`cursor-pointer mx-2 border-black ${category === value ? "border" : ""}`}
+      data-testid="radioLabel"
+    >
       {value}
       <input
         className="hidden"
