@@ -11,10 +11,7 @@ describe("ToDo Item", () => {
   test("Clicking on item 'completes' it and vice-versa", () => {
     render(<ToDoApp />);
 
-    const todoList = screen.getAllByTestId("todoItemText");
-    expect(todoList).toHaveLength(3);
-
-    const todoItem = todoList[0];
+    const todoItem = screen.getByText("Тестовое задание");
     expect(todoItem).not.toHaveClass("line-through");
 
     userEvent.click(todoItem);

@@ -1,6 +1,5 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { forEachChild } from "typescript";
 
 import ToDoApp from "../../ToDoApp/ToDoApp";
 
@@ -26,16 +25,20 @@ describe("Radio Button", () => {
     expect(radioButtonsList[2]).toHaveClass("border");
   });
 
-  test("Clicking on radio button changes catregory", () => {
+  test("Clicking on radio button changes category", () => {
     render(<ToDoApp />);
 
     const radioButtonsList = screen.getAllByTestId("radioLabel");
 
     userEvent.click(radioButtonsList[1]);
 
-    screen.getAllByTestId("todoItemText").forEach(todoItem => expect(todoItem).not.toHaveClass("line-through"));
+    screen
+      .getAllByRole("listitem")
+      .forEach(todoItem => expect(within(todoItem).getByText(/ /i)).not.toHaveClass("line-through"));
 
     userEvent.click(radioButtonsList[2]);
-    screen.getAllByTestId("todoItemText").forEach(todoItem => expect(todoItem).toHaveClass("line-through"));
+    screen
+      .getAllByRole("listitem")
+      .forEach(todoItem => expect(within(todoItem).getByText(/ /i)).toHaveClass("line-through"));
   });
 });
