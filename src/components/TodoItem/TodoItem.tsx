@@ -12,9 +12,7 @@ type Props = {
 const ToDoItem = ({ text, id, finished, removeItem, toggleItem }: Props) => {
   return (
     <li
-      className="cursor-pointer flex justify-between h-12 items-center text-base sm:text-xl text-gray-600 border flex-row-reverse
-        hover:bg-gray-100 group
-        "
+      className="cursor-pointer flex justify-between h-12 items-center text-base sm:text-xl text-gray-600 border flex-row-reverse"
       onClick={() => toggleItem(id)}
     >
       <button
@@ -24,7 +22,9 @@ const ToDoItem = ({ text, id, finished, removeItem, toggleItem }: Props) => {
       >
         <MdDeleteOutline />
       </button>
-      <div className={`flex justify-start items-center w-full h-full transition-all peer-hover:bg-red-50`}>
+      <div
+        className={`flex justify-start items-center w-full h-full transition-all peer-hover:bg-red-50 group hover:bg-gray-100`}
+      >
         <div
           className={`transition-all border border-gray-300 rounded-full mx-2 w-6 h-6 sm:w-8 sm:h-8 flex justify-center items-center
                        ${finished ? "border-green-200" : ""}`}
