@@ -31,6 +31,7 @@ const Input = ({ refProp, addItem }: Props) => {
         className="lol w-24 rounded-tr-xl border-l border-gray-300 text-2xl hover:text-3xl hover:text-red-200
                  text-gray-300 flex items-center justify-center transition-all active:text-4xl"
         onClick={addItem}
+        aria-label="add"
       >
         <SlPlus />
       </button>

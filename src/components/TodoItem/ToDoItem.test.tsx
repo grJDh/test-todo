@@ -4,21 +4,17 @@ import userEvent from "@testing-library/user-event";
 import ToDoApp from "../../ToDoApp/ToDoApp";
 
 describe("ToDo Item", () => {
-  // const startToDoApp = () => {
-  //   render(<ToDoApp />);
-  // };
-
   test("Clicking on item 'completes' it and vice-versa", () => {
     render(<ToDoApp />);
 
     const todoItem = screen.getByText("Тестовое задание");
-    expect(todoItem).not.toHaveClass("line-through");
+    expect(todoItem).not.toHaveClass("before:w-full");
 
     userEvent.click(todoItem);
-    expect(todoItem).toHaveClass("line-through");
+    expect(todoItem).toHaveClass("before:w-full");
 
     userEvent.click(todoItem);
-    expect(todoItem).not.toHaveClass("line-through");
+    expect(todoItem).not.toHaveClass("before:w-full");
   });
 
   test("Clicking on delete button removes item from list", () => {

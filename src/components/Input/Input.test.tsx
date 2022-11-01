@@ -20,7 +20,7 @@ describe("Input", () => {
     userEvent.type(inputElement, "Проверить тесты");
     expect(inputElement).toHaveValue("Проверить тесты");
 
-    const addButton = screen.getByRole("button", { name: "+" });
+    const addButton = screen.getByRole("button", { name: "add" });
     userEvent.click(addButton);
 
     expect(screen.getByText("Проверить тесты")).toBeInTheDocument();
@@ -47,7 +47,7 @@ describe("Input", () => {
     const todoList = screen.getAllByRole("listitem");
     expect(todoList).toHaveLength(3);
 
-    const addButton = screen.getByRole("button", { name: "+" });
+    const addButton = screen.getByRole("button", { name: "add" });
     userEvent.click(addButton);
 
     expect(todoList).toHaveLength(3);

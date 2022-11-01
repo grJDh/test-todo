@@ -24,12 +24,12 @@ describe("Footer", () => {
     const clearButton = screen.getByRole("button", { name: /Clear completed/i });
 
     const completedItem = within(screen.getAllByRole("listitem")[1]).getByText(/[А-я]|[A-z]|[0-9]/i);
-    expect(completedItem).toHaveClass("line-through");
+    expect(completedItem).toHaveClass("before:w-full");
 
     userEvent.click(clearButton);
     expect(completedItem).not.toBeInTheDocument();
     screen
       .getAllByRole("listitem")
-      .forEach(todoItem => expect(within(todoItem).getByText(/[А-я]|[A-z]|[0-9]/i)).not.toHaveClass("line-through"));
+      .forEach(todoItem => expect(within(todoItem).getByText(/[А-я]|[A-z]|[0-9]/i)).not.toHaveClass("before:w-full"));
   });
 });

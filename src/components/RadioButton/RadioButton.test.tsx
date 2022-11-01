@@ -34,11 +34,11 @@ describe("Radio Button", () => {
 
     screen
       .getAllByRole("listitem")
-      .forEach(todoItem => expect(within(todoItem).getByText(/[А-я]|[A-z]|[0-9]/i)).not.toHaveClass("line-through"));
+      .forEach(todoItem => expect(within(todoItem).getByText(/[А-я]|[A-z]|[0-9]/i)).not.toHaveClass("before:w-full"));
 
     userEvent.click(radioButtonsList[2]);
     screen
       .getAllByRole("listitem")
-      .forEach(todoItem => expect(within(todoItem).getByText(/[А-я]|[A-z]|[0-9]/i)).toHaveClass("line-through"));
+      .forEach(todoItem => expect(within(todoItem).getByText(/[А-я]|[A-z]|[0-9]/i)).toHaveClass("before:w-full"));
   });
 });
