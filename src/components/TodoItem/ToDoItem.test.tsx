@@ -1,19 +1,17 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-
-// import App from "../../App";
 
 import ToDoApp from "../../ToDoApp/ToDoApp";
 
 describe("ToDo Item", () => {
-  const startToDoApp = () => {
-    render(<ToDoApp />);
-  };
+  // const startToDoApp = () => {
+  //   render(<ToDoApp />);
+  // };
 
   test("Clicking on item 'completes' it and vice-versa", () => {
-    startToDoApp();
+    render(<ToDoApp />);
 
-    const todoList = screen.getAllByRole("listitem");
+    const todoList = screen.getAllByTestId("todoItemText");
     expect(todoList).toHaveLength(3);
 
     const todoItem = todoList[0];
@@ -24,5 +22,15 @@ describe("ToDo Item", () => {
 
     userEvent.click(todoItem);
     expect(todoItem).not.toHaveClass("line-through");
+  });
+
+  test("Clicking on delete button removes item from list", () => {
+    render(<ToDoApp />);
+
+    const todoItem = screen.getAllByRole("listitem")[0];
+    const deleteButton = within(todoItem).getByRole("button");
+
+    userEvent.click(deleteButton);
+    expect(todoItem).not.toBeInTheDocument();
   });
 });

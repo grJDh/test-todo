@@ -12,7 +12,12 @@ const ToDoItem = ({ text, id, finished, removeItem, toggleItem }: Props) => {
       className={`cursor-pointer border-solid border-black border flex justify-between`}
       onClick={() => toggleItem(id)}
     >
-      <p className={`${finished ? "line-through" : ""}`}>{text}</p>
+      <p
+        className={`${finished ? "line-through" : ""}`}
+        data-testid="todoItemText"
+      >
+        {text}
+      </p>
       <button onClick={() => removeItem(id)}>D</button>
     </li>
   );

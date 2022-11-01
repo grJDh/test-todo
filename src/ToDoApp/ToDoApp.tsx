@@ -8,17 +8,17 @@ const ToDoApp = () => {
   const [todoList, setTodoList] = useState([
     {
       id: 1667248861470,
-      text: "Приготовить ужин",
+      text: "Тестовое задание",
       finished: false,
     },
     {
       id: 1667248805525,
-      text: "Почистить обувь",
+      text: "Прекрасный код",
       finished: true,
     },
     {
       id: 1667248804108,
-      text: "Написать программу",
+      text: "Покрыть тестами",
       finished: false,
     },
   ]);

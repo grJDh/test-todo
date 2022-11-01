@@ -23,9 +23,7 @@ describe("Input", () => {
     const addButton = screen.getByRole("button", { name: "+" });
     userEvent.click(addButton);
 
-    expect(
-      screen.getAllByRole("listitem").find(listitem => listitem.textContent === "Проверить тесты")
-    ).toBeInTheDocument();
+    expect(screen.getByText("Проверить тесты")).toBeInTheDocument();
 
     expect(inputElement).toHaveValue("");
   });
@@ -38,9 +36,7 @@ describe("Input", () => {
 
     userEvent.keyboard("[Enter]");
 
-    expect(
-      screen.getAllByRole("listitem").find(listitem => listitem.textContent === "Проверить тесты")
-    ).toBeInTheDocument();
+    expect(screen.getByText("Проверить тесты")).toBeInTheDocument();
 
     expect(inputElement).toHaveValue("");
   });
