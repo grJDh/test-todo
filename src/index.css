@@ -8,7 +8,7 @@ body,
   height: 100%;
 }
 
-ul {
+.overflow-y-overlay {
   overflow-y: overlay;
 }
 

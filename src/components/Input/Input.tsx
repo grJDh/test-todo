@@ -18,7 +18,7 @@ const Input = ({ refProp, addItem }: Props) => {
   });
 
   return (
-    <div className="flex border-b-2 border-gray-300 h-12 relative">
+    <div className="flex border-b-2 border-gray-300 h-12 absolute w-full bg-white z-10">
       <input
         className="w-full text-base sm:text-xl rounded-tl-xl px-12 placeholder:italic placeholder:text-gray-300 peer/input
                    focus:outline-gray-300"

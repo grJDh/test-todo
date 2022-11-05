@@ -90,14 +90,14 @@ const ToDoApp = () => {
   return (
     <div
       className="flex w-5/6 max-w-screen-sm min-w-[340px] h-1/2 bg-white flex-col shadow-xl justify-between rounded-xl
-                relative"
+                relative pb-12 overflow-hidden"
     >
-      <div className="overflow-hidden shadow-">
+      <div className="overflow-y-overlay h-full">
         <Input
           refProp={inputRef}
           addItem={addItem}
         />
-        <ul className="h-full">
+        <ul className="h-full pt-12">
           {filteredTodoList.map(item => (
             <ToDoItem
               text={item.text}
